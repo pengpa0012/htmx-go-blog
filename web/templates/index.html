@@ -14,7 +14,12 @@
         <li>Feed</li>
         <li>Create</li>
       </ul>
-      <div hx-get="/blogs" hx-trigger="load" hx-swap="outerHTML"></div>
+      <form hx-post="/addBlog" class="flex flex-col items-center justify-center gap-4" hx-target="#blogs">
+        <input type="text" name="title" placeholder="Title" class="border rounded-md p-2">
+        <input type="text" name="description" placeholder="Description" class="border rounded-md p-2">
+        <button type="submit">add</button>
+      </form>
+      <div hx-get="/blogs" hx-trigger="load" hx-swap="outerHTML" id="blogs"></div>
     </div>
   </body>
 </html>
