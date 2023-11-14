@@ -31,9 +31,18 @@ func Home(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", "/")
 }
 
+func Feed(c echo.Context) error {
+	return c.Render(http.StatusOK, "feed.html", "/")
+}
+
+func Create(c echo.Context) error {
+	return c.Render(http.StatusOK, "create.html", "/")
+}
+
 func getBlogs(c echo.Context) error {
 	return c.Render(http.StatusOK, "cards.html", blogs)
 }
+
 
 func addBlog(c echo.Context) error {
 	title := c.FormValue("title")
@@ -65,6 +74,8 @@ func main() {
 
 	e.Renderer = t
 	e.GET("/", Home)
+	e.GET("/feed", Feed)
+	e.GET("/create", Create)
 	e.GET("/blogs", getBlogs)
 	e.POST("/addBlog", addBlog)
 	e.Logger.Fatal(e.Start(":5000"))
